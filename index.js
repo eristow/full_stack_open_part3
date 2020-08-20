@@ -50,7 +50,7 @@ app.get('/api/persons/:id', (req, res, next) => {
     .catch(error => next(error));
 });
 
-app.get('/info', (req, res) => {
+app.get('/info', (req, res, next) => {
   Person.find({})
     .then(person => {
       res.send(
@@ -84,7 +84,7 @@ app.post('/api/persons', (req, res, next) => {
 
 app.delete('/api/persons/:id', (req, res, next) => {
   Person.findByIdAndRemove(req.params.id)
-    .then(result => {
+    .then(res => {
       res.status(204).end();
     })
     .catch(error => next(error));
